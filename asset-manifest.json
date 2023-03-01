@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/MITxMERN-BadBank/static/css/main.20eb7fa8.css",
+    "main.js": "/MITxMERN-BadBank/static/js/main.92d75a50.js",
+    "static/js/787.a84f74d6.chunk.js": "/MITxMERN-BadBank/static/js/787.a84f74d6.chunk.js",
+    "static/media/logo.svg": "/MITxMERN-BadBank/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/MITxMERN-BadBank/index.html",
+    "main.20eb7fa8.css.map": "/MITxMERN-BadBank/static/css/main.20eb7fa8.css.map",
+    "main.92d75a50.js.map": "/MITxMERN-BadBank/static/js/main.92d75a50.js.map",
+    "787.a84f74d6.chunk.js.map": "/MITxMERN-BadBank/static/js/787.a84f74d6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.20eb7fa8.css",
+    "static/js/main.92d75a50.js"
+  ]
+}
