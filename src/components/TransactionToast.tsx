@@ -5,7 +5,7 @@ import currencyFormat from "../modules/currencyFormat";
 import Transaction from "../types/Transaction";
 import TransactionType from "../types/TransactionType";
 
-const toastDuration = 3000;
+const toastDuration = 1000;
 
 export default function TransactionToast() {
   const [newTransactions, setNewTransactions] = useState<Transaction[]>([]);
@@ -17,16 +17,16 @@ export default function TransactionToast() {
     if (!(account?.ledger?.length > 0)) return;
     console.log("new transaction");
 
-    const fiveSecondsAgo = new Date(new Date().getTime() - toastDuration);
+    const timeToHideToast = new Date(new Date().getTime() - toastDuration);
     const lastTrans = account.ledger.at(-1);
-    if (lastTrans.date > fiveSecondsAgo) {
+    if (lastTrans.date.toDate() > timeToHideToast) {
       const updatedTransactions = [...newTransactions, lastTrans];
       setNewTransactions(updatedTransactions);
     }
   }, [account.ledger]);
 
   return (
-    <ToastContainer position="top-end" className="mt-4 pt-5">
+    <ToastContainer position="top-end" className="mt-4 pt-5 opacity-75">
       {newTransactions.map((x) => {
         return <TransToast transaction={x} />;
       })}
@@ -54,14 +54,12 @@ function TransToast({ transaction }: { transaction: Transaction }) {
                           : "text-warning text-opacity-75 me-auto"
                       }>{transaction?.type} {currencyFormat.format(transaction.amount)}</strong>
         <small className="text-light text-opacity-50">
-          {transaction?.date.toLocaleTimeString()}
+          {transaction?.date.toDate().toLocaleTimeString()}
         </small>
       </Toast.Header>
       <Toast.Body>
-        {/* <p className="text-muted">{transaction?.description}</p> */}
         <small className="text-light">
          new balance {currencyFormat.format(transaction.newTotal)}</small>
-        {/* {transaction?.description} */}
       </Toast.Body>
     </Toast>
   );

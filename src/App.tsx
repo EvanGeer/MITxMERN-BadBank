@@ -11,15 +11,10 @@ import AccountContext from "./contexts/accountContext";
 import { useState } from "react";
 import Account from "./types/Account";
 import TransactionToast from "./components/TransactionToast";
+import { useFirestore } from "./firebase/useFirestore";
 
 export function App() {
-  const [account, setAccount] = useState<Account>({
-    accountNumber: "chx123",
-    accountName: "Checking",
-    accountType: AccountType.CHECKING,
-    balance: 100,
-    ledger: [],
-  });
+  const [account, setAccount] = useFirestore();
 
   return (
     <div className={classNames("main-wrapper", "main-wrapper-responsive")}>

@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 import { Context } from "vm";
 import Account from "../types/Account";
 
-interface accContext {
+export interface accContext {
     account: Account
     setAccount: React.Dispatch<React.SetStateAction<Account>>
 }

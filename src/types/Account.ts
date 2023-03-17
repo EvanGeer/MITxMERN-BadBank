@@ -2,9 +2,9 @@ import { AccountType } from "./AccountType";
 import Transaction from "./Transaction";
 
 type Account = {
-    accountNumber:string;
-    accountName:string;
-    accountType:AccountType
+    number:string;
+    name:string;
+    type:AccountType
     balance:number;
     ledger:Transaction[];
 }

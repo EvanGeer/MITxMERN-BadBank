@@ -12,8 +12,8 @@ function TransactionCard({ transaction }: { transaction: Transaction }) {
       <Card bg="dark p-0 m-1">
         <Card.Header className="bg-secondary bg-opacity-25">
           <small className="text-light text-opacity-75">
-            {transaction.date.toDateString()},{" "}
-            {transaction.date.toLocaleTimeString()}
+            {transaction.date.toDate().toDateString()},{" "}
+            {transaction.date.toDate().toLocaleTimeString()}
           </small>
         </Card.Header>
         <Card.Body>

@@ -1,7 +1,8 @@
+import { Timestamp } from "firebase/firestore";
 import TransactionType from "./TransactionType";
 
 interface Transaction {
-    date: Date;
+    date: Timestamp;
     amount: number;
     newTotal: number;
     type: TransactionType;

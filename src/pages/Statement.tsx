@@ -14,10 +14,7 @@ export function StatementPage() {
       <div className="container">
         {account.ledger
           .sort((x: Transaction, y: Transaction) => {
-            return (
-              new Date(x.date).getTime() -
-              new Date(y.date).getTime()
-            );
+            return x.date.seconds - y.date.seconds;
           })
           .reverse()
           .map((x: Transaction) => (

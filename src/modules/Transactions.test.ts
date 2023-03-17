@@ -4,9 +4,9 @@ import TransactionType from "../types/TransactionType";
 import Transactions from "./Transactions";
 
 const startingTestAccount = {
-    accountNumber:'123',
-    accountName:'Checking',
-    accountType:AccountType.CHECKING,
+    number:'123',
+    name:'Checking',
+    type:AccountType.CHECKING,
     balance:100,
     ledger:new Array<Transaction>(),
 }

@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import Account from "../types/Account";
 import Transaction from "../types/Transaction";
 import TransactionType from "../types/TransactionType";
@@ -52,9 +53,9 @@ namespace Transactions {
   ): Transaction {
     const newTotal = account.balance - amount;
     const newDescription =
-      description ?? `Withdrawal: ${currencyFormat.format(amount)} from ${account.accountName}`;
+      description ?? `Withdrawal: ${currencyFormat.format(amount)} from ${account.name}`;
     const trans = {
-      date: new Date(),
+      date: Timestamp.now(),
       amount,
       newTotal,
       type: TransactionType.WITHDRAWAL,
@@ -76,9 +77,9 @@ namespace Transactions {
     console.log(account);
     const newTotal = account.balance + amount;
     const newDescription =
-      description ?? `Deposit: ${currencyFormat.format(amount)} to ${account.accountName}`;
+      description ?? `Deposit: ${currencyFormat.format(amount)} to ${account.name}`;
     const trans = {
-      date: new Date(),
+      date: Timestamp.now(),
       amount,
       newTotal,
       type: TransactionType.DEPOSIT,
