@@ -1,5 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import AccountInfo from "./AccountInfo";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 import Deposit from "../pages/Deposit";
@@ -80,6 +79,17 @@ it("should withdrawal $60", () => {
   const okay = screen.getByTestId("Okay");
   expect(balanceElement()).toHaveTextContent("$100.00");
 
+  const expectedEnabled = [
+    "quick-cash-20", 
+    "quick-cash-40"
+  ];
+  const expectedDisabled = [
+    "quick-cash-60",
+    "quick-cash-80",
+    "quick-cash-100",
+    "quick-cash-200",
+  ];
+
   // act
   act(() => {
     userEvent.type(transactInput, "60");
@@ -87,18 +97,16 @@ it("should withdrawal $60", () => {
     userEvent.click(okay);
   });
 
-  // asserts
+  // assert
   // transaction basics
   expect(transactInput).toHaveValue(60);
   expect(balanceElement()).toHaveTextContent("$40.00");
 
-  // enabled controls
-  expect(screen.getByTestId("quick-cash-20")).toBeEnabled();
-  expect(screen.getByTestId("quick-cash-40")).toBeEnabled();
-
-  // disabled controls
-  expect(screen.getByTestId("quick-cash-60")).toBeDisabled();
-  expect(screen.getByTestId("quick-cash-80")).toBeDisabled();
-  expect(screen.getByTestId("quick-cash-100")).toBeDisabled();
-  expect(screen.getByTestId("quick-cash-200")).toBeDisabled();
+  // enabled/disabled controls
+  expectedDisabled.forEach((element) => {
+    expect(screen.getByTestId(element)).toBeDisabled();
+  })
+  expectedEnabled.forEach((element) => {
+    expect(screen.getByTestId(element)).toBeEnabled();
+  })
 });

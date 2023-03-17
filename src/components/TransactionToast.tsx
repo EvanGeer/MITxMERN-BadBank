@@ -19,7 +19,7 @@ export default function TransactionToast() {
 
     const timeToHideToast = new Date(new Date().getTime() - toastDuration);
     const lastTrans = account.ledger.at(-1);
-    if (lastTrans.date.toDate() > timeToHideToast) {
+    if (lastTrans && lastTrans.date.toDate() > timeToHideToast) {
       const updatedTransactions = [...newTransactions, lastTrans];
       setNewTransactions(updatedTransactions);
     }

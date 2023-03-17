@@ -8,7 +8,7 @@ export function TransactForm({
   transaction,
   validations,
 }: {
-  transaction: (a: Account, x: number) => {};
+  transaction: (a: Account, x: number) => Account;
   validations: ((x: number) => { passes: boolean; message: string })[];
 }) {
   const [value, setValue] = useState<number | string>("");

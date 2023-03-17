@@ -4,9 +4,9 @@ import Account from "../types/Account";
 
 export interface accContext {
     account: Account
-    setAccount: React.Dispatch<React.SetStateAction<Account>>
+    setAccount: (acct:Account) => void
 }
 
-const AccountContext = createContext<any>(null);
+const AccountContext = createContext<accContext>({} as accContext);
 
 export default AccountContext;

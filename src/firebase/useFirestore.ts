@@ -33,5 +33,5 @@ export function useFirestore() {
   }
 
 
-  return [account, setAccount];
+  return {account, setAccount};
 }
