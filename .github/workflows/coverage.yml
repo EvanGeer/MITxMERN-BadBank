@@ -27,7 +27,7 @@ jobs:
 #         env: 
 #           CI: ""
 
-      - run: "jest --detectOpenHandles --forceExit"
+      - run: npm test --detectOpenHandles --forceExit
         env:
           CI: "firebase emulators:exec --only firestore \"yarn test\""
     
