@@ -30,7 +30,7 @@ jobs:
       - run: npm test --coverage --detectOpenHandles --forceExit
         env:
           CI: "firebase emulators:exec --only firestore \"yarn test\""
-    
+     
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
