@@ -1,16 +1,20 @@
 {
   "files": {
-    "main.css": "/MITxMERN-BadBank/static/css/main.20eb7fa8.css",
-    "main.js": "/MITxMERN-BadBank/static/js/main.e7e30905.js",
+    "main.css": "/MITxMERN-BadBank/static/css/main.53a45e49.css",
+    "main.js": "/MITxMERN-BadBank/static/js/main.8635ee9a.js",
     "static/js/787.a84f74d6.chunk.js": "/MITxMERN-BadBank/static/js/787.a84f74d6.chunk.js",
-    "static/media/logo.svg": "/MITxMERN-BadBank/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/fiREact.png": "/MITxMERN-BadBank/static/media/fiREact.57078e437a30325fe1d7.png",
+    "static/media/firebaseLogo.png": "/MITxMERN-BadBank/static/media/firebaseLogo.3bb79a87201fade0d25a.png",
+    "static/media/googleLogo.webp": "/MITxMERN-BadBank/static/media/googleLogo.9be2a29b26ddf3cacc50.webp",
+    "static/media/logoGradient.svg": "/MITxMERN-BadBank/static/media/logoGradient.e4d1e465348d8c6fe89126315e58536a.svg",
+    "static/media/logo.svg": "/MITxMERN-BadBank/static/media/logo.73e2797d99a0c21d29f2755d848b9b05.svg",
     "index.html": "/MITxMERN-BadBank/index.html",
-    "main.20eb7fa8.css.map": "/MITxMERN-BadBank/static/css/main.20eb7fa8.css.map",
-    "main.e7e30905.js.map": "/MITxMERN-BadBank/static/js/main.e7e30905.js.map",
+    "main.53a45e49.css.map": "/MITxMERN-BadBank/static/css/main.53a45e49.css.map",
+    "main.8635ee9a.js.map": "/MITxMERN-BadBank/static/js/main.8635ee9a.js.map",
     "787.a84f74d6.chunk.js.map": "/MITxMERN-BadBank/static/js/787.a84f74d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.20eb7fa8.css",
-    "static/js/main.e7e30905.js"
+    "static/css/main.53a45e49.css",
+    "static/js/main.8635ee9a.js"
   ]
 }
