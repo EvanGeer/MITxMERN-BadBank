@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MITxMERN-BadBank/static/css/main.53a45e49.css",
-    "main.js": "/MITxMERN-BadBank/static/js/main.551d6662.js",
+    "main.js": "/MITxMERN-BadBank/static/js/main.cf563a44.js",
     "static/js/787.a84f74d6.chunk.js": "/MITxMERN-BadBank/static/js/787.a84f74d6.chunk.js",
     "static/media/fiREact.png": "/MITxMERN-BadBank/static/media/fiREact.57078e437a30325fe1d7.png",
     "static/media/firebaseLogo.png": "/MITxMERN-BadBank/static/media/firebaseLogo.3bb79a87201fade0d25a.png",
@@ -10,11 +10,11 @@
     "static/media/logo.svg": "/MITxMERN-BadBank/static/media/logo.73e2797d99a0c21d29f2755d848b9b05.svg",
     "index.html": "/MITxMERN-BadBank/index.html",
     "main.53a45e49.css.map": "/MITxMERN-BadBank/static/css/main.53a45e49.css.map",
-    "main.551d6662.js.map": "/MITxMERN-BadBank/static/js/main.551d6662.js.map",
+    "main.cf563a44.js.map": "/MITxMERN-BadBank/static/js/main.cf563a44.js.map",
     "787.a84f74d6.chunk.js.map": "/MITxMERN-BadBank/static/js/787.a84f74d6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.53a45e49.css",
-    "static/js/main.551d6662.js"
+    "static/js/main.cf563a44.js"
   ]
 }
