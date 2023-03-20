@@ -11,7 +11,7 @@ import { useFirestore } from "./firebase/useFirestore";
 
 export function App() {
   const { account, setAccount } = useFirestore();
-  const { user, setUser } = useFirestore();
+  const { user } = useFirestore();
 
   return (
     <div className={classNames("main-wrapper", "main-wrapper-responsive")}>

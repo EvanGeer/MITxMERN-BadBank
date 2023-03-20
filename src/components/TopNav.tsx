@@ -17,7 +17,7 @@ import {
 } from "react-bootstrap-icons";
 
 export default function TopNav() {
-  const { user, setUser } = useFirestore();
+  const { user } = useFirestore();
 
   function TopNavLink({
     id,
