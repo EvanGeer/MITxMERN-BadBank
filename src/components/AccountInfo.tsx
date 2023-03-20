@@ -1,14 +1,21 @@
 import logo from "../logo.svg";
 import "../App.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import currency from "../modules/currencyFormat";
 import AccountContext, { accContext } from "../contexts/accountContext";
 import Account from "../types/Account";
 import { useFirestore } from "../firebase/useFirestore";
 
 function AccountInfo() {
-  const { account } = useContext(AccountContext);
+  const { account, accounts } = useContext(AccountContext);
   // const {accounts, acctIndex } = useFirestore();
+
+  useEffect(() => {
+    // console.log(`Account Index ${acctIndex}`);
+    console.log(accounts);
+    console.log(account);
+
+  }, [account])
 
   return (
     <>
