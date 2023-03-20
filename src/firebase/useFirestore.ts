@@ -9,14 +9,14 @@ import {
 } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import AccountContext from "../contexts/accountContext";
+import AccountContext, { accContext } from "../contexts/accountContext";
 import Account from "../types/Account";
 import { AccountType } from "../types/AccountType";
 import User from "../types/User";
 import { auth } from "./auth";
 import { db } from "./firestoreSetup";
 
-export function useFirestore() {
+export function useFirestore(): () => accContext {
   const defaultAccount = {
     number: "00001001",
     name: "Checking",
@@ -25,13 +25,7 @@ export function useFirestore() {
     ledger: [],
   };
   const [firebaseUser, loading, error] = useAuthState(auth);
-
-  // const [user, setUser] = useState<User | null>(null);
-  const [account, _setAccount] = useState<Account>(defaultAccount);
-  const [accounts, setAccounts] = useState(new Array<Account>());
-  const {account: acct, setAccount: setAcct} = useContext(AccountContext);
-
-  const [acctIndex, setAcctIndex] = useState(0);
+  
 
   const [userDocRef, setUserDocRef] =
     useState<DocumentReference<DocumentData> | null>(null);
@@ -87,12 +81,12 @@ export function useFirestore() {
 
       let updatedSnap = userData.accts.find((x: Account) => x.number === account.number) as Account;
       // console.log("Current data: ", doc.data());
-      _setAccount(updatedSnap);
+      setAccount(updatedSnap);
     });
   }, [userDocRef]);
 
-  const setAccount = (acct: Account) => {
-    _setAccount(acct);
+  const updateAccount = (acct: Account) => {
+    setAccount(acct);
 
     console.log(acctIndex);
     if (!userDocRef) return;
@@ -108,7 +102,7 @@ export function useFirestore() {
     }
 
     setAcctIndex(newIndex);
-    setAcct(acct);
+    // context.setAccount(acct);
     updateDoc(userDocRef, {
       accts: newAccts
     });
@@ -129,12 +123,12 @@ export function useFirestore() {
       balance: 0,
     };
 
-    setAccount(newAccount);
+    updateAccount(newAccount);
   };
 
   return {
     account,
-    setAccount,
+    updateAccount,
     user: firebaseUser,
     accounts,
     createNewAccount,
