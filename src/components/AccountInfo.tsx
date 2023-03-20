@@ -4,16 +4,19 @@ import { useContext } from "react";
 import currency from "../modules/currencyFormat";
 import AccountContext, { accContext } from "../contexts/accountContext";
 import Account from "../types/Account";
+import { useFirestore } from "../firebase/useFirestore";
 
 function AccountInfo() {
   const { account } = useContext(AccountContext);
+  // const {accounts, acctIndex } = useFirestore();
 
   return (
     <>
       {/* <img src={logo} className="App-logo" alt="logo" />
       <h1 className="text-primary">Welcome to React Bank</h1> */}
       <h2 data-testid="account-balance-header">
-        {account.name}: {currency.format(account.balance)}
+        {/* {accounts[acctIndex]?.name}: {currency.format(accounts[acctIndex]?.balance)} */}
+        {account?.name}: {currency.format(account?.balance)}
       </h2>
     </>
   );

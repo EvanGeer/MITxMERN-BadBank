@@ -7,8 +7,9 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import AccountContext from "../contexts/accountContext";
 import Account from "../types/Account";
 import { AccountType } from "../types/AccountType";
 import User from "../types/User";
@@ -28,6 +29,9 @@ export function useFirestore() {
   // const [user, setUser] = useState<User | null>(null);
   const [account, _setAccount] = useState<Account>(defaultAccount);
   const [accounts, setAccounts] = useState(new Array<Account>());
+  const {account: acct, setAccount: setAcct} = useContext(AccountContext);
+
+  const [acctIndex, setAcctIndex] = useState(0);
 
   const [userDocRef, setUserDocRef] =
     useState<DocumentReference<DocumentData> | null>(null);
@@ -90,19 +94,21 @@ export function useFirestore() {
   const setAccount = (acct: Account) => {
     _setAccount(acct);
 
+    console.log(acctIndex);
     if (!userDocRef) return;
 
     const newAccts = [...accounts]
     const acctNumber = acct.number;
-    const existingAccount = accounts.findIndex((x) => x.number === acctNumber);
+    let newIndex = accounts.findIndex((x) => x.number === acctNumber);
 
-    if (existingAccount === -1) {
-      newAccts.push(acct);
+    if (newIndex === -1) {
+      newIndex = newAccts.push(acct);
     } else {
-      newAccts[existingAccount] = acct;
+      newAccts[newIndex] = acct;
     }
 
-
+    setAcctIndex(newIndex);
+    setAcct(acct);
     updateDoc(userDocRef, {
       accts: newAccts
     });
@@ -132,5 +138,6 @@ export function useFirestore() {
     user: firebaseUser,
     accounts,
     createNewAccount,
+    acctIndex,
   };
 }

@@ -1,12 +1,15 @@
+import { useContext } from "react";
 import { Bank, CreditCard, PiggyBank, Plus } from "react-bootstrap-icons";
 import SidebarMenu from "react-bootstrap-sidebar-menu";
 import { JsxChild } from "typescript";
+import AccountContext from "../contexts/accountContext";
 import { useFirestore } from "../firebase/useFirestore";
 import currencyFormat from "../modules/currencyFormat";
 import { AccountType } from "../types/AccountType";
 
 export function SidebarNav() {
-  const { accounts, setAccount, createNewAccount } = useFirestore();
+  const { accounts, createNewAccount, setAccount } = useFirestore();
+  // const { setAccount} =  useContext(AccountContext);
 
   const AccountLink = ({ name, icon, onClick }: { name: string; icon: JSX.Element, onClick: () => void }) => {
     return (
