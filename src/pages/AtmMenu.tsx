@@ -13,12 +13,12 @@ import { useFirestore } from "../firebase/useFirestore";
 export function AtmMenu() {
   const routeTo = useNavigate();
   const [loading] = useAuthState(auth);
-  const { account } = useFirestore();
+  const { account, accounts } = useFirestore();
 
   return (
     <>
       <Home />
-      { isNaN(account.balance) ? (
+      { isNaN(accounts[account].balance) ? (
         <img src={logoGradient} className="App-logo opacity-75" alt="logo" />
       ) : (
         <>

@@ -15,9 +15,12 @@ import {
   ClockHistory,
   House,
 } from "react-bootstrap-icons";
+import { useContext } from "react";
+import AccountContext from "../contexts/accountContext";
+import PrimaryButton from "./PrimayButton";
 
 export default function TopNav() {
-  const { user } = useFirestore();
+  const { user, account, accounts, setActiveAccount } = useContext(AccountContext);
 
   function TopNavLink({
     id,
@@ -62,6 +65,8 @@ export default function TopNav() {
         // href="https://github.com/react-bootstrap/react-bootstrap"
         className="d-block flex-row text-light justify-content-center p-0 d-flex"
       >
+      <PrimaryButton text={"Next"} action={() => setActiveAccount(account === 0 ? accounts[1].number : accounts[0].number)} />
+
         <Container className="ms-2 ps-3">
           <img src={fiREactLogo} style={{ height: "30px" }} />
         </Container>

@@ -9,7 +9,7 @@ import { Validation } from "../modules/Validation";
 import TransactionType from "../types/TransactionType";
 
 export function Withdrawal() {
-  const { account } = useContext(AccountContext);
+  const { account, accounts } = useContext(AccountContext);
 
   return (
     <>
@@ -36,7 +36,7 @@ export function Withdrawal() {
     </Card>
       <TransactForm
         validations={[
-          (x) => Validation.wontOverdraft(x, account.balance),
+          (x) => Validation.wontOverdraft(x, accounts[account].balance),
           Validation.isGreaterThenZero,
           Validation.isIncrementOfTwenty,
         ]}

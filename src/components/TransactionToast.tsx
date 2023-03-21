@@ -10,22 +10,22 @@ const toastDuration = 1500;
 export default function TransactionToast() {
   const [newTransactions, setNewTransactions] = useState<Transaction[]>([]);
 
-  const { account } = useContext(AccountContext);
-  const [ledgerLength, setLedgerLength] = useState(account?.ledger.length)
+  const { account, accounts } = useContext(AccountContext);
+  const [ledgerLength, setLedgerLength] = useState(accounts[account]?.ledger.length)
 
-  useEffect(() => {
-    console.log("ledger updated");
-    if (!(account?.ledger?.length > 0) || account.ledger.length === ledgerLength) return;
-    setLedgerLength(account.ledger.length); // this prevents double toasts resulting from the Firestore onSnapshot updates firing
-    console.log("new transaction");
+  // useEffect(() => {
+  //   console.log("ledger updated");
+  //   if (!(accounts[account]?.ledger?.length > 0) || accounts[account].ledger.length === ledgerLength) return;
+  //   setLedgerLength(accounts[account].ledger.length); // this prevents double toasts resulting from the Firestore onSnapshot updates firing
+  //   console.log("new transaction");
 
-    const timeToHideToast = new Date(new Date().getTime() - toastDuration);
-    const lastTrans = account.ledger.at(-1);
-    if (lastTrans && lastTrans.date.toDate() > timeToHideToast) {
-      const updatedTransactions = [...newTransactions, lastTrans];
-      setNewTransactions(updatedTransactions);
-    }
-  }, [account.ledger]);
+  //   const timeToHideToast = new Date(new Date().getTime() - toastDuration);
+  //   const lastTrans = accounts[account].ledger.at(-1);
+  //   if (lastTrans && lastTrans.date.toDate() > timeToHideToast) {
+  //     const updatedTransactions = [...newTransactions, lastTrans];
+  //     setNewTransactions(updatedTransactions);
+  //   }
+  // }, [accounts[account].ledger]);
 
   return (
     <ToastContainer position="top-end" className="mt-4 pt-5 opacity-100">

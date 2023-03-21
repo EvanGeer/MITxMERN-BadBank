@@ -20,7 +20,7 @@ export function TransactForm({
   const [isInValid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { account, setAccount } = useContext(AccountContext);
+  const { account, accounts, setAccount } = useContext(AccountContext);
 
   useEffect(() => {
     // this is needed for when we navigate via the router
@@ -68,7 +68,7 @@ export function TransactForm({
     const newIsValid = failedValidation ? true : false;
     if (newIsValid) return;
 
-    const updatedAccount = transaction(account, Number(value));
+    const updatedAccount = transaction(accounts[account], Number(value));
     setAccount(updatedAccount);
     navTo("/")
   };

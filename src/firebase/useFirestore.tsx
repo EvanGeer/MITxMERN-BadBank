@@ -16,7 +16,7 @@ import User from "../types/User";
 import { auth } from "./auth";
 import { db } from "./firestoreSetup";
 
-export function useFirestore(): () => accContext {
+export function useFirestore(): accContext {
   const defaultAccount = {
     number: "00001001",
     name: "Checking",
@@ -24,11 +24,16 @@ export function useFirestore(): () => accContext {
     balance: NaN,
     ledger: [],
   };
-  const [firebaseUser, loading, error] = useAuthState(auth);
-  
 
+  // Firebase
+  const [firebaseUser, loading, error] = useAuthState(auth);
   const [userDocRef, setUserDocRef] =
     useState<DocumentReference<DocumentData> | null>(null);
+
+  // Data context
+  const [accounts, setAccounts] = useState<Account[]>([defaultAccount]);
+  // const [account, setAccount] = useState<Account>(defaultAccount);
+  const [activeAccountIndex, setActiveAccountIndex] = useState(0);
 
   useEffect(() => {
     if (!firebaseUser) return;
@@ -37,36 +42,42 @@ export function useFirestore(): () => accContext {
       // create default account if none exists
       if (!docSnapshot.exists()) {
         setDoc(_doc, {
-          accts: [
-            { ...defaultAccount, balance: 0 },
-          ],
+          accts: [{ ...defaultAccount, balance: 0 }],
         });
       }
     });
 
     setUserDocRef(_doc);
   }, [firebaseUser]);
+  
+  // useEffect(() => {
+  //   console.log(`${account.number} updated`);
+  // }, [account]);
 
   useEffect(() => {
     if (!userDocRef) return;
 
     // set initial values
-    getDoc(userDocRef).then((snap) => {
-      const userData = snap.data();
-      console.log("User Data Retrieved");
-      console.log(userData);
-      if (!userData) return;
+    // getDoc(userDocRef).then((snap) => {
+    //   const userData = snap.data();
+    //   console.log("User Data Retrieved");
+    //   console.log(userData);
+    //   if (!userData) return;
 
-      let newAccount = userData.accts[0] as Account;
+    //   let newAccount = userData.accts[0] as Account;
 
-      if (!newAccount) {
-        newAccount = { ...defaultAccount, balance: 0 };
-        // const newAccts = { ...userData.accts, "00001001": newAccount };
-        updateDoc(userDocRef, {
-          accts: [newAccount],
-        });
-      }
-    });
+    //   if (!newAccount) {
+    //     newAccount = { ...defaultAccount, balance: 0 };
+    //     // const newAccts = { ...userData.accts, "00001001": newAccount };
+    //     updateDoc(userDocRef, {
+    //       accts: [newAccount],
+    //     });
+    //   }
+    // });
+
+    // const getActiveAccount = () => {
+    //   accounts.find((x: Account) => x.number === account.number);
+    // }
 
     // handle updates to the Firestore from the remote
     onSnapshot(userDocRef, (doc) => {
@@ -78,20 +89,31 @@ export function useFirestore(): () => accContext {
       // const userAccounts = Object.keys(userData.accts);
       // console.log(userAccounts);
       setAccounts(userData.accts);
-
-      let updatedSnap = userData.accts.find((x: Account) => x.number === account.number) as Account;
-      // console.log("Current data: ", doc.data());
-      setAccount(updatedSnap);
+      // setAccount(
+      //   () => {
+      //     const acctToSet = userData.accts.find((x: Account) => x.number === account.number)
+      //     console.log(acctToSet)
+      //     return acctToSet;
+      //   }
+      // );
     });
   }, [userDocRef]);
 
-  const updateAccount = (acct: Account) => {
-    setAccount(acct);
+  const setActiveAccount = (acctNumber: string) => {
+    console.log(`setting: ${acctNumber}`);
+    const newActiveAccount = accounts.findIndex((x) => x.number === acctNumber);
+    console.log(newActiveAccount);
+    setActiveAccountIndex(newActiveAccount)
+    // if (newActiveAccount) setAccount(newActiveAccount);
+  };
 
-    console.log(acctIndex);
+  const updateAccount = (acct: Account) => {
+    // setAccount(acct);
+
+    // console.log(acctIndex);
     if (!userDocRef) return;
 
-    const newAccts = [...accounts]
+    const newAccts = [...accounts];
     const acctNumber = acct.number;
     let newIndex = accounts.findIndex((x) => x.number === acctNumber);
 
@@ -101,10 +123,10 @@ export function useFirestore(): () => accContext {
       newAccts[newIndex] = acct;
     }
 
-    setAcctIndex(newIndex);
+    // setAcctIndex(newIndex);
     // context.setAccount(acct);
     updateDoc(userDocRef, {
-      accts: newAccts
+      accts: newAccts,
     });
   };
 
@@ -114,24 +136,28 @@ export function useFirestore(): () => accContext {
     return numberString;
   }
 
-  const createNewAccount = (name: string, type: AccountType) => {
+  const createAccount = (name: string, type: AccountType, number: string) => {
     const newAccount = {
       ...defaultAccount,
       name,
       type,
-      number: "00001002",
+      number,
       balance: 0,
     };
+
+    console.log("new account");
+    console.log(newAccount);
 
     updateAccount(newAccount);
   };
 
   return {
-    account,
-    updateAccount,
-    user: firebaseUser,
     accounts,
-    createNewAccount,
-    acctIndex,
+    // account: account,
+    account: activeAccountIndex,
+    setActiveAccount,
+    createAccount,
+    setAccount: updateAccount,
+    user: firebaseUser,
   };
 }
