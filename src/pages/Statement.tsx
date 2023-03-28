@@ -6,13 +6,13 @@ import PrimaryButton from "../components/PrimayButton";
 import { useNavigate } from "react-router-dom";
 
 export function StatementPage() {
-  const { account } = useContext(AccountContext);
+  const { account, accounts } = useContext(AccountContext);
   const navigate = useNavigate();
 
   return (
     <>
       <div className="container">
-        {account.ledger
+        {accounts[account].ledger
           .sort((x: Transaction, y: Transaction) => {
             return x.date.seconds - y.date.seconds;
           })

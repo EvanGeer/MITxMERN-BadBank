@@ -6,18 +6,18 @@ import Transaction from "../types/Transaction";
 import TransactionToast from "./TransactionToast";
 
 function QuickCashButton({ amount }: { amount: number }) {
-  const { account, setAccount } = useContext(AccountContext);
+  const { account, accounts, setAccount } = useContext(AccountContext);
   const [isDisabled, setIsDisabled] = useState(false);
   const [val, setVal] = useState(amount);
 
   useEffect(() => {
     console.log(account);
-    const newDisabledState = val > account.balance;
+    const newDisabledState = val > accounts[account].balance;
     setIsDisabled(newDisabledState);
-  }, [account.balance]);
+  }, [accounts[account].balance]);
 
   const handleSubmit = () => {
-    const updatedAccount = Transactions.withdrawal(account, amount);
+    const updatedAccount = Transactions.withdrawal(accounts[account], amount);
     // const trans = updatedAccount.ledger.at(-1);
     // setTransaction(trans);
     setAccount(updatedAccount);

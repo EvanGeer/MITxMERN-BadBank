@@ -7,7 +7,7 @@ import { FireReactBankBrand } from "../pages/FireReactBankBrand";
 import { FirebaseUser } from "../types/User";
 
 export default function LoginFlyout() {
-  const { user, setUser } = useFirestore();
+  const { user } = useFirestore();
   const [show, setShow] = useState(false);
   // const [user, setUser] = useState<FirebaseUser | null>(null);
 
@@ -60,7 +60,7 @@ export default function LoginFlyout() {
         </Offcanvas.Header>
         <Offcanvas.Body className="p-0">
           <FireReactBankBrand className="ps-2"/>
-          <FirebaseLogin onLogOut={() => setUser(null)} />
+          <FirebaseLogin onLogOut={() => console.log("log out")} />
         </Offcanvas.Body>
       </Offcanvas>
     </>

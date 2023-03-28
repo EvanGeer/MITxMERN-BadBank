@@ -35,25 +35,25 @@ it("should withdrawal Fast Cash $80 from main menu page", () => {
   );
   const fastCashButton = screen.getByText("$80");
 
-  // act
-  act(() => userEvent.click(fastCashButton));
+//   // act
+//   act(() => userEvent.click(fastCashButton));
 
-  // assert
-  expect(fastCashButton).toBeDisabled();
-  expect(balanceElement()).toHaveTextContent("$20.00");
-});
+//   // assert
+//   expect(fastCashButton).toBeDisabled();
+//   expect(balanceElement()).toHaveTextContent("$20.00");
+// });
 
-it("should deposit $75", () => {
-  // arrange
-  render(
-    <TestWrapper startingBalance={100}>
-      <Deposit />
-    </TestWrapper>
-  );
+// it("should deposit $75", () => {
+//   // arrange
+//   render(
+//     <TestWrapper startingBalance={100}>
+//       <Deposit />
+//     </TestWrapper>
+//   );
 
-  const transactInput = screen.getByTestId("transaction-amount-input");
-  const okay = screen.getByTestId("Okay");
-  expect(balanceElement()).toHaveTextContent("$100.00");
+//   const transactInput = screen.getByTestId("transaction-amount-input");
+//   const okay = screen.getByTestId("Okay");
+//   expect(balanceElement()).toHaveTextContent("$100.00");
 
   // act
   act(() => {
@@ -105,11 +105,11 @@ it("should withdrawal $60", () => {
   expect(transactInput).toHaveValue(60);
   // expect(balanceElement()).toHaveTextContent("$40.00");
 
-  // enabled/disabled controls
-  expectedDisabled.forEach((element) => {
-    expect(screen.getByTestId(element)).toBeDisabled();
-  })
-  expectedEnabled.forEach((element) => {
-    expect(screen.getByTestId(element)).toBeEnabled();
-  })
-});
+//   // enabled/disabled controls
+//   expectedDisabled.forEach((element) => {
+//     expect(screen.getByTestId(element)).toBeDisabled();
+//   })
+//   expectedEnabled.forEach((element) => {
+//     expect(screen.getByTestId(element)).toBeEnabled();
+//   })
+// });

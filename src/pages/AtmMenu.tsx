@@ -15,12 +15,12 @@ import AccountContext from "../contexts/accountContext";
 export function AtmMenu() {
   const routeTo = useNavigate();
   const [loading] = useAuthState(auth);
-  const { account } = useContext(AccountContext);
+  const { account, accounts } = useFirestore();
 
   return (
     <>
       <Home />
-      { isNaN(account.balance) ? (
+      { isNaN(accounts[account].balance) ? (
         <img src={logoGradient} className="App-logo opacity-75" alt="logo" />
       ) : (
         <>

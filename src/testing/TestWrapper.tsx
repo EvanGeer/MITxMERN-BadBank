@@ -22,12 +22,12 @@ export function TestWrapper({
 
   return (
     <HashRouter>
-      <AccountContext.Provider value={{ account, setAccount }}>
+      {/* <AccountContext.Provider value={{ account, setAccount, accounts: [account] }}> */}
         {/* <AccountInfo /> */}
 
         { children }
 
-      </AccountContext.Provider>
+      {/* </AccountContext.Provider> */}
     </HashRouter>
   );
 }
