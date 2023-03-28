@@ -20,7 +20,7 @@ export function AtmMenu() {
   return (
     <>
       <Home />
-      { isNaN(accounts[account].balance) ? (
+      { !accounts || isNaN(accounts[account]?.balance) ? (
         <img src={logoGradient} className="App-logo opacity-75" alt="logo" />
       ) : (
         <>
